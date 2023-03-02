@@ -35,6 +35,28 @@
     <link href="assets/lib/remodal/remodal-default-theme.css" rel="stylesheet">
     <link href="assets/css/theme.css" rel="stylesheet">
 
+    <style>
+      
+        .biz-logo{
+          width:600px;
+        }
+      
+      @media only screen and (max-width:600px){
+        .biz-logo{
+          width: 100%;
+          max-width: 300px;
+        }
+      }
+      
+      .nav-link-text{
+        font-size: 1rem;
+      }
+
+      .under-logo{
+        font-size: 1.1rem!important;
+      } 
+
+    </style>
   </head>
 
 
@@ -89,14 +111,14 @@
         <div class="container">
           <div class="d-flex flex-center vh-100">
             <div class="header-text">
-              <img  width="600" style="margin-bottom:20px" src="/assets/img/logo/Bizshape Logo.png"/>
+              <img class="biz-logo" style="margin-bottom:20px" src="/assets/img/logo/Bizshape Logo.png"/>
               <div class="overflow-hidden">
                 <h1 class="display-3 text-white fs-5 fs-md-7" style='font-weight:bold; font-size:2.583rem' data-zanim-xs='{"duration":2,"delay":0}'>Shape your business, Shake the Market!<br/></h1>
               </div>
               <div class="overflow-hidden">
-                <p class="text-uppercase text-400 ls-2 mt-2" data-zanim-xs='{"duration":2,"delay":0.1}'> A Business Management Consultancy &amp; Software Development</p>
+                <p class="text-uppercase text-400 ls-2 mt-2 under-logo" data-zanim-xs='{"duration":2,"delay":0.1}'> A Business Management Consultancy &amp; Software Development</p>
               </div>
-              <div  data-zanim-xs='{"from":{"opacity":0,"y":30},"to":{"opacity":1,"y":0},"duration":1.5,"delay":0.5}'><a data-fancyscroll="data-fancyscroll" data-offset="64" class="btn btn-sm btn-outline-light hvr-sweep-top mt-5 px-4" href="#services">our services</a></div>
+              <div  data-zanim-xs='{"from":{"opacity":0,"y":30},"to":{"opacity":1,"y":0},"duration":1.5,"delay":0.5}'><a data-fancyscroll="data-fancyscroll" data-offset="64" class="btn btn-sm btn-outline-light hvr-sweep-top mt-5 px-4" style="padding:10px; font-size:1.2rem" href="#services">our services</a></div>
             </div>
           </div>
           <div class="header-indicator-down"><a class="indicator indicator-down opacity-75" href="#about-us" data-fancyscroll="data-fancyscroll" data-offset="64"><span class="indicator-arrow indicator-arrow-one" data-zanim-xs='{"from":{"opacity":0,"y":30},"to":{"opacity":1,"y":0},"ease":"Back.easeOut","duration":1,"delay":1.5}'></span></a></div>

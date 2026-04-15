@@ -180,8 +180,10 @@
     }
 
     /* Per-slide caption — rotates in sync with the image above */
+    .collage-main-footer { min-height: 130px; }
     .slide-caption {
       position: absolute;
+      left: 0; right: 0; bottom: 0;
       opacity: 0;
       animation: collageCarousel 20s infinite;
     }
@@ -191,23 +193,25 @@
     .slide-caption:nth-of-type(4) { animation-delay: -12s; }
     .slide-caption:nth-of-type(5) { animation-delay: -16s; }
 
-    /* Carousel progress dots at the top of the card */
+    /* Carousel progress bars at the top of the card — fills while slide is
+       active, snaps back to empty the instant the slide ends, then stays
+       empty until its next turn. */
     .carousel-progress {
       position: absolute;
-      top: 8px; left: 18px; right: 18px;
-      display: flex; gap: 4px; z-index: 3;
+      top: 10px; left: 18px; right: 18px;
+      display: flex; gap: 4px; z-index: 5;
     }
     .carousel-progress > span {
-      flex: 1; height: 2px; border-radius: 2px;
-      background: rgba(255,255,255,0.18);
+      flex: 1; height: 3px; border-radius: 3px;
+      background: rgba(255,255,255,0.2);
       overflow: hidden;
     }
     .carousel-progress > span::after {
-      content: ''; display: block; height: 100%;
+      content: ''; display: block; height: 100%; width: 100%;
       background: var(--accent);
       transform-origin: left;
       transform: scaleX(0);
-      animation: dotFill 20s infinite;
+      animation: dotFill 20s linear infinite;
     }
     .carousel-progress > span:nth-child(1)::after { animation-delay: 0s; }
     .carousel-progress > span:nth-child(2)::after { animation-delay: -4s; }
@@ -215,9 +219,10 @@
     .carousel-progress > span:nth-child(4)::after { animation-delay: -12s; }
     .carousel-progress > span:nth-child(5)::after { animation-delay: -16s; }
     @keyframes dotFill {
-      0%   { transform: scaleX(0); }
-      20%  { transform: scaleX(1); }
-      100% { transform: scaleX(1); }
+      0%      { transform: scaleX(0); }
+      20%     { transform: scaleX(1); }
+      20.01%  { transform: scaleX(0); }
+      100%    { transform: scaleX(0); }
     }
     .collage-main-overlay {
       position: absolute; inset: 0;
@@ -675,11 +680,11 @@
 
           <div class="collage-card collage-main">
             <div class="collage-carousel">
-              <div class="collage-slide"><img src="assets/img/projects/1.jpg" alt="Coastal apparel site"></div>
-              <div class="collage-slide"><img src="assets/img/projects/2.jpg" alt="Fitness tracking app"></div>
-              <div class="collage-slide"><img src="assets/img/projects/3.jpg" alt="Property management portal"></div>
-              <div class="collage-slide"><img src="assets/img/projects/5.jpg" alt="Launch campaign site"></div>
-              <div class="collage-slide"><img src="assets/img/projects/6.jpg" alt="Hospitality website"></div>
+              <div class="collage-slide"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80" alt="Code editor — web development"></div>
+              <div class="collage-slide"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=80" alt="Mobile app in hand"></div>
+              <div class="collage-slide"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80" alt="SaaS analytics dashboard"></div>
+              <div class="collage-slide"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt="MacBook with code editor"></div>
+              <div class="collage-slide"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=900&q=80" alt="Mobile app UI mockup"></div>
             </div>
 
             <div class="collage-main-overlay"></div>
@@ -698,17 +703,17 @@
 
             <div class="collage-main-footer">
               <div class="slide-caption">
-                <div class="collage-main-role">E-commerce · Melbourne</div>
-                <div class="collage-main-name">Coastal apparel rebuild</div>
+                <div class="collage-main-role">Full-stack web · Melbourne</div>
+                <div class="collage-main-name">Typed, tested, shipped</div>
                 <div class="collage-main-stack">
                   <span class="stack-pill">Next.js</span>
-                  <span class="stack-pill">Stripe</span>
-                  <span class="stack-pill">Sanity CMS</span>
+                  <span class="stack-pill">TypeScript</span>
+                  <span class="stack-pill">Vercel</span>
                 </div>
               </div>
               <div class="slide-caption">
                 <div class="collage-main-role">Mobile app · iOS + Android</div>
-                <div class="collage-main-name">Fitness tracking app</div>
+                <div class="collage-main-name">Native feel, one codebase</div>
                 <div class="collage-main-stack">
                   <span class="stack-pill">React Native</span>
                   <span class="stack-pill">Expo</span>
@@ -716,17 +721,17 @@
                 </div>
               </div>
               <div class="slide-caption">
-                <div class="collage-main-role">SaaS dashboard · Sydney</div>
-                <div class="collage-main-name">Property management portal</div>
+                <div class="collage-main-role">SaaS · Analytics dashboard</div>
+                <div class="collage-main-name">Data that drives decisions</div>
                 <div class="collage-main-stack">
-                  <span class="stack-pill">Next.js</span>
-                  <span class="stack-pill">TypeScript</span>
+                  <span class="stack-pill">React</span>
+                  <span class="stack-pill">tRPC</span>
                   <span class="stack-pill">PostgreSQL</span>
                 </div>
               </div>
               <div class="slide-caption">
-                <div class="collage-main-role">Landing page · Brisbane</div>
-                <div class="collage-main-name">Product launch campaign</div>
+                <div class="collage-main-role">Marketing site · Melbourne</div>
+                <div class="collage-main-name">Landing pages that convert</div>
                 <div class="collage-main-stack">
                   <span class="stack-pill">Astro</span>
                   <span class="stack-pill">Framer Motion</span>
@@ -734,12 +739,12 @@
                 </div>
               </div>
               <div class="slide-caption">
-                <div class="collage-main-role">Website upgrade · Melbourne</div>
-                <div class="collage-main-name">Hospitality modernisation</div>
+                <div class="collage-main-role">Mobile UI · consumer app</div>
+                <div class="collage-main-name">Delightful everyday UX</div>
                 <div class="collage-main-stack">
-                  <span class="stack-pill">React</span>
-                  <span class="stack-pill">Contentful</span>
-                  <span class="stack-pill">Vercel</span>
+                  <span class="stack-pill">React Native</span>
+                  <span class="stack-pill">Reanimated</span>
+                  <span class="stack-pill">EAS</span>
                 </div>
               </div>
             </div>
@@ -986,18 +991,18 @@
     </div>
     <div class="work-marquee">
       <div class="work-track">
-        <div class="work-card"><img src="assets/img/projects/1.jpg" alt="Coastal apparel project"><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">E-commerce · 2025</div><div class="work-card-name">Coastal apparel rebuild</div></div></div>
-        <div class="work-card"><img src="assets/img/projects/2.jpg" alt="Fitness app"><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Mobile app · 2025</div><div class="work-card-name">Fitness tracking iOS app</div></div></div>
-        <div class="work-card"><img src="assets/img/projects/3.jpg" alt="Property portal"><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">SaaS · 2025</div><div class="work-card-name">Property management portal</div></div></div>
-        <div class="work-card"><img src="assets/img/projects/4.jpg" alt="Legal firm site"><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Website · 2025</div><div class="work-card-name">Legal firm redesign</div></div></div>
-        <div class="work-card"><img src="assets/img/projects/5.jpg" alt="Launch campaign"><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Landing · 2025</div><div class="work-card-name">Launch campaign site</div></div></div>
-        <div class="work-card"><img src="assets/img/projects/6.jpg" alt="Hospitality site"><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Upgrade · 2025</div><div class="work-card-name">Hospitality modernisation</div></div></div>
-        <div class="work-card"><img src="assets/img/projects/1.jpg" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">E-commerce · 2025</div><div class="work-card-name">Coastal apparel rebuild</div></div></div>
-        <div class="work-card"><img src="assets/img/projects/2.jpg" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Mobile app · 2025</div><div class="work-card-name">Fitness tracking iOS app</div></div></div>
-        <div class="work-card"><img src="assets/img/projects/3.jpg" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">SaaS · 2025</div><div class="work-card-name">Property management portal</div></div></div>
-        <div class="work-card"><img src="assets/img/projects/4.jpg" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Website · 2025</div><div class="work-card-name">Legal firm redesign</div></div></div>
-        <div class="work-card"><img src="assets/img/projects/5.jpg" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Landing · 2025</div><div class="work-card-name">Launch campaign site</div></div></div>
-        <div class="work-card"><img src="assets/img/projects/6.jpg" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Upgrade · 2025</div><div class="work-card-name">Hospitality modernisation</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Code · 2025</div><div class="work-card-name">Full-stack web rebuild</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Mobile app · 2025</div><div class="work-card-name">Fitness tracking iOS app</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">SaaS · 2025</div><div class="work-card-name">Analytics dashboard</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Website · 2025</div><div class="work-card-name">Professional services site</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Mobile · 2025</div><div class="work-card-name">Consumer app UI</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Upgrade · 2025</div><div class="work-card-name">Dashboard modernisation</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Code · 2025</div><div class="work-card-name">Full-stack web rebuild</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Mobile app · 2025</div><div class="work-card-name">Fitness tracking iOS app</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">SaaS · 2025</div><div class="work-card-name">Analytics dashboard</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Website · 2025</div><div class="work-card-name">Professional services site</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Mobile · 2025</div><div class="work-card-name">Consumer app UI</div></div></div>
+        <div class="work-card"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80" alt=""><div class="work-card-overlay"></div><div class="work-card-label"><div class="work-card-kind">Upgrade · 2025</div><div class="work-card-name">Dashboard modernisation</div></div></div>
       </div>
     </div>
   </section>

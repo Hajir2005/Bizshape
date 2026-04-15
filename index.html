@@ -148,8 +148,76 @@
       0%, 100% { transform: rotate(-2deg) translateY(0); }
       50%      { transform: rotate(-2deg) translateY(-8px); }
     }
-    .collage-main-img {
+    /* Project carousel inside the main card */
+    .collage-carousel {
+      position: absolute; inset: 0;
+      overflow: hidden;
+    }
+    .collage-slide {
+      position: absolute; inset: 0;
+      opacity: 0;
+      animation: collageCarousel 20s infinite;
+    }
+    .collage-slide img {
       width: 100%; height: 100%; object-fit: cover;
+      transform: scale(1.05);
+      animation: slideZoom 20s infinite;
+    }
+    .collage-slide:nth-child(1), .collage-slide:nth-child(1) img { animation-delay: 0s; }
+    .collage-slide:nth-child(2), .collage-slide:nth-child(2) img { animation-delay: -4s; }
+    .collage-slide:nth-child(3), .collage-slide:nth-child(3) img { animation-delay: -8s; }
+    .collage-slide:nth-child(4), .collage-slide:nth-child(4) img { animation-delay: -12s; }
+    .collage-slide:nth-child(5), .collage-slide:nth-child(5) img { animation-delay: -16s; }
+    @keyframes collageCarousel {
+      0%, 18%  { opacity: 1; }
+      22%, 98% { opacity: 0; }
+      100%     { opacity: 1; }
+    }
+    @keyframes slideZoom {
+      0%   { transform: scale(1.05); }
+      18%  { transform: scale(1.12); }
+      22%, 100% { transform: scale(1.05); }
+    }
+
+    /* Per-slide caption — rotates in sync with the image above */
+    .slide-caption {
+      position: absolute;
+      opacity: 0;
+      animation: collageCarousel 20s infinite;
+    }
+    .slide-caption:nth-of-type(1) { animation-delay: 0s; }
+    .slide-caption:nth-of-type(2) { animation-delay: -4s; }
+    .slide-caption:nth-of-type(3) { animation-delay: -8s; }
+    .slide-caption:nth-of-type(4) { animation-delay: -12s; }
+    .slide-caption:nth-of-type(5) { animation-delay: -16s; }
+
+    /* Carousel progress dots at the top of the card */
+    .carousel-progress {
+      position: absolute;
+      top: 8px; left: 18px; right: 18px;
+      display: flex; gap: 4px; z-index: 3;
+    }
+    .carousel-progress > span {
+      flex: 1; height: 2px; border-radius: 2px;
+      background: rgba(255,255,255,0.18);
+      overflow: hidden;
+    }
+    .carousel-progress > span::after {
+      content: ''; display: block; height: 100%;
+      background: var(--accent);
+      transform-origin: left;
+      transform: scaleX(0);
+      animation: dotFill 20s infinite;
+    }
+    .carousel-progress > span:nth-child(1)::after { animation-delay: 0s; }
+    .carousel-progress > span:nth-child(2)::after { animation-delay: -4s; }
+    .carousel-progress > span:nth-child(3)::after { animation-delay: -8s; }
+    .carousel-progress > span:nth-child(4)::after { animation-delay: -12s; }
+    .carousel-progress > span:nth-child(5)::after { animation-delay: -16s; }
+    @keyframes dotFill {
+      0%   { transform: scaleX(0); }
+      20%  { transform: scaleX(1); }
+      100% { transform: scaleX(1); }
     }
     .collage-main-overlay {
       position: absolute; inset: 0;
@@ -578,7 +646,7 @@
     </div>
     <div class="container" style="position: relative; z-index: 2;">
       <div class="hero-status">
-        <div><span class="hero-status-dot"></span>Available for projects · Sydney, AU</div>
+        <div><span class="hero-status-dot"></span>Available for projects · Melbourne, AU</div>
       </div>
 
       <div class="hero-layout">
@@ -606,8 +674,20 @@
           <div class="aurora aurora-3"></div>
 
           <div class="collage-card collage-main">
-            <img src="assets/img/team/2.jpg" alt="BizShape engineer at work" class="collage-main-img">
+            <div class="collage-carousel">
+              <div class="collage-slide"><img src="assets/img/projects/1.jpg" alt="Coastal apparel site"></div>
+              <div class="collage-slide"><img src="assets/img/projects/2.jpg" alt="Fitness tracking app"></div>
+              <div class="collage-slide"><img src="assets/img/projects/3.jpg" alt="Property management portal"></div>
+              <div class="collage-slide"><img src="assets/img/projects/5.jpg" alt="Launch campaign site"></div>
+              <div class="collage-slide"><img src="assets/img/projects/6.jpg" alt="Hospitality website"></div>
+            </div>
+
             <div class="collage-main-overlay"></div>
+
+            <div class="carousel-progress">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+
             <div class="collage-main-chrome">
               <div class="live-pill">
                 <span class="pulse"></span>
@@ -615,13 +695,52 @@
               </div>
               <div class="collage-main-timestamp">02:47 PM AEDT</div>
             </div>
+
             <div class="collage-main-footer">
-              <div class="collage-main-name">Engineer at work</div>
-              <div class="collage-main-role">Sydney · pushing to production</div>
-              <div class="collage-main-stack">
-                <span class="stack-pill">React</span>
-                <span class="stack-pill">TypeScript</span>
-                <span class="stack-pill">Supabase</span>
+              <div class="slide-caption">
+                <div class="collage-main-role">E-commerce · Melbourne</div>
+                <div class="collage-main-name">Coastal apparel rebuild</div>
+                <div class="collage-main-stack">
+                  <span class="stack-pill">Next.js</span>
+                  <span class="stack-pill">Stripe</span>
+                  <span class="stack-pill">Sanity CMS</span>
+                </div>
+              </div>
+              <div class="slide-caption">
+                <div class="collage-main-role">Mobile app · iOS + Android</div>
+                <div class="collage-main-name">Fitness tracking app</div>
+                <div class="collage-main-stack">
+                  <span class="stack-pill">React Native</span>
+                  <span class="stack-pill">Expo</span>
+                  <span class="stack-pill">Supabase</span>
+                </div>
+              </div>
+              <div class="slide-caption">
+                <div class="collage-main-role">SaaS dashboard · Sydney</div>
+                <div class="collage-main-name">Property management portal</div>
+                <div class="collage-main-stack">
+                  <span class="stack-pill">Next.js</span>
+                  <span class="stack-pill">TypeScript</span>
+                  <span class="stack-pill">PostgreSQL</span>
+                </div>
+              </div>
+              <div class="slide-caption">
+                <div class="collage-main-role">Landing page · Brisbane</div>
+                <div class="collage-main-name">Product launch campaign</div>
+                <div class="collage-main-stack">
+                  <span class="stack-pill">Astro</span>
+                  <span class="stack-pill">Framer Motion</span>
+                  <span class="stack-pill">Tailwind</span>
+                </div>
+              </div>
+              <div class="slide-caption">
+                <div class="collage-main-role">Website upgrade · Melbourne</div>
+                <div class="collage-main-name">Hospitality modernisation</div>
+                <div class="collage-main-stack">
+                  <span class="stack-pill">React</span>
+                  <span class="stack-pill">Contentful</span>
+                  <span class="stack-pill">Vercel</span>
+                </div>
               </div>
             </div>
           </div>
@@ -795,8 +914,8 @@
             <div class="bento-medium">Based in Australia,<br>built for Australia.</div>
             <p class="bento-small">We know your market, your timezone, and your customers. GST invoicing in AUD.</p>
             <div class="bento-pill-row">
-              <span class="bento-pill">Sydney</span>
               <span class="bento-pill">Melbourne</span>
+              <span class="bento-pill">Sydney</span>
               <span class="bento-pill">Brisbane</span>
               <span class="bento-pill">Perth</span>
               <span class="bento-pill">Remote Australia-wide</span>
@@ -914,7 +1033,7 @@
               <div class="contact-item-icon">📍</div>
               <div>
                 <div class="contact-item-label">Based in</div>
-                <div class="contact-item-val">Sydney, Australia · Remote AU-wide</div>
+                <div class="contact-item-val">Melbourne, Australia · Remote AU-wide</div>
               </div>
             </div>
             <div class="contact-item">
@@ -985,7 +1104,7 @@
           <a href="#top" class="nav-brand">
             <img src="assets/img/logo/Bizshape-Logo-footer.png" alt="BizShape" class="nav-brand-logo" style="height: 36px;">
           </a>
-          <p style="color: var(--text-muted); font-size: 14px; max-width: 320px; line-height: 1.6; margin-top: 16px;">Modern websites and mobile apps for Australian businesses. Crafted in Sydney, shipped worldwide.</p>
+          <p style="color: var(--text-muted); font-size: 14px; max-width: 320px; line-height: 1.6; margin-top: 16px;">Modern websites and mobile apps for Australian businesses. Crafted in Melbourne, shipped worldwide.</p>
         </div>
         <div>
           <h4>Services</h4>
@@ -1016,7 +1135,7 @@
       </div>
       <div class="footer-bottom">
         <div>&copy; BizShape 2026. All rights reserved.</div>
-        <div>Sydney · Australia</div>
+        <div>Melbourne · Australia</div>
       </div>
     </div>
   </footer>
